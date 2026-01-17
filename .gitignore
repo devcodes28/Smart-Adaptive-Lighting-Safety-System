@@ -1,0 +1,16 @@
+# Node / React
+frontend/node_modules
+frontend/dist
+frontend/.env
+
+# Python
+backend/__pycache__/
+backend/.env
+*.pyc
+
+# OS / Editor
+.DS_Store
+.vscode/
+
+# Logs
+*.log
