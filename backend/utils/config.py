@@ -1,0 +1,7 @@
+APP_NAME = "Smart Community Night Safety System"
+
+SAFE_LIMIT = 2
+WARNING_LIMIT = 5
+DANGER_LIMIT = 5
+
+INACTIVITY_TIME = 4
