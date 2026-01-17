@@ -1,21 +1,26 @@
-from flask import Flask, jsonify
-from utils.config import APP_NAME
-from api.visionRoutes import vision_api
+from flask import Flask
+from flask_cors import CORS
 
-app = Flask(__name__)
-app.register_blueprint(vision_api)
+# Blueprint imports
+from api.statusRoutes import status_bp
+from api.sosRoutes import sos_bp
+from api.visionRoutes import vision_bp
 
-@app.route("/")
-def home():
-    return jsonify({
-        "app": APP_NAME,
-        "status": "Backend running successfully"
-    })
 
-@app.route("/health")
-def health():
-    return jsonify({"status": "OK"})
+def create_app():
+    app = Flask(__name__)
+    CORS(app)
+
+    # Register blueprints
+    app.register_blueprint(status_bp, url_prefix="/api")
+    app.register_blueprint(sos_bp, url_prefix="/api")
+    app.register_blueprint(vision_bp, url_prefix="/api/vision")
+
+    return app
+
+
+app = create_app()
 
 if __name__ == "__main__":
-    print("🚀 Starting backend server...")
+    print("🚀 Backend server running...")
     app.run(host="0.0.0.0", port=5000, debug=True)
